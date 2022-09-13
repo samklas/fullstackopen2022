@@ -1,8 +1,9 @@
+import Person from "./Person"
 
-const Persons = ({ persons, newFilter }) => {
+const Persons = ({ persons, newFilter, removePerson }) => {
   return (
     <div>
-      {persons.map(person => person.name.toUpperCase().includes(newFilter.toUpperCase()) ? <p key={person.id}>{person.name} {person.number}</p> : '')}
+       {persons.map(person => person.name.toUpperCase().includes(newFilter.toUpperCase()) ? <Person key={person.id} person={person} removePerson={removePerson}/> : ' ')}
     </div>
   )
 }
