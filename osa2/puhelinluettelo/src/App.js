@@ -1,8 +1,8 @@
 import Persons from './Components/Persons'
 import PersonForm from './Components/PersonForm'
 import Filter from './Components/Filter'
+import Notification from './Components/Notification'
 import personService from './services/persons'
-import axios from 'axios'
 import { useState, useEffect } from 'react'
 
 const App = () => {
@@ -10,6 +10,7 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newFilter, setNewFilter] = useState('')
+  const [notification, setNotification] = useState(null)
 
   //Gets all the persons from the phonebook
   useEffect(() => {
@@ -47,7 +48,11 @@ const App = () => {
         .create(person)
         .then(returnedPerson => {
           setPersons(persons.concat(returnedPerson))
+          setNotification(`${returnedPerson.name} added to phonebook`)
         })
+        setTimeout(() => {
+          setNotification(null)
+        }, 3000)
     }
   }
 
@@ -74,6 +79,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
+      <Notification notification={notification}/>
       <Filter handleFilter={handleFilter}/>
       <h2>add a new</h2>
       <PersonForm handleName={handleName} handleNumber={handleNumber} newPerson={newPerson}/>
