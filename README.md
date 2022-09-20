@@ -1,1 +1,1 @@
-"# fullstackopen2022" 
+Tämä repo sisältää Full Stack Open 2022 -kurssin tehtäviä
